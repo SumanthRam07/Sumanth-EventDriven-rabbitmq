@@ -1,0 +1,36 @@
+
+server:
+  port: 9010
+
+Spring:
+   application:
+     name : "messagae"
+   cloud:
+     function:
+       definition: email|sms
+     stream:
+       bindings:
+         emailsms-in-0:
+           destination: sent-communication
+           group: ${spring.application.name}
+         emailsms-out-0:
+           destination: communication-sent
+   rabbitmq:
+      host: localhost
+      port: 5672
+      username: guest
+      password: guest
+      connection-timeout: 10s
+
+
+
+logging:
+  level:
+    com:
+      sumanthbank:
+        message: DEBUG
+
+
+
+
+
